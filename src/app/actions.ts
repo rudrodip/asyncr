@@ -27,9 +27,7 @@ export async function searchUsers(query?: string): Promise<User[]> {
   if (query) {
     const lowercaseQuery = query.toLowerCase()
     return allUsers.filter(user => 
-      user.name.toLowerCase().includes(lowercaseQuery) ||
-      user.email.toLowerCase().includes(lowercaseQuery) ||
-      user.role.toLowerCase().includes(lowercaseQuery)
+      user.name.toLowerCase().includes(lowercaseQuery)
     ).slice(0, 10) // Return only first 10 matches
   }
 
