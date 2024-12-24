@@ -3,9 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev --turbopack",
-    "build": "next build",
-    "start": "next start",
+    "dev": "velite && next dev --turbopack",
+    "build": "velite && next build",
+    "start": "velite && next start",
     "lint": "next lint"
   },
   "dependencies": {
