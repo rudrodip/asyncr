@@ -95,7 +95,7 @@ function Socials() {
         asChild
       >
         <a
-          href={`${siteConfig.socials.github}/tree/main/src/components/async-select`}
+          href={`${siteConfig.socials.github}/tree/main/src/components/async-select.tsx`}
           target="_blank"
           rel="noreferrer"
         >
