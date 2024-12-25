@@ -1,12 +1,12 @@
 # Async Select Component
 
-A modern, accessible, and customizable async select component for React applications. Built with TypeScript and ShadCN UI components.
+A modern, accessible, and customizable async select component for React applications. Built with TypeScript and shadcn/ui components.
 
 ![Async Select](./public/og.png)
 
 ## Installation
 
-The Async Select is built using a composition of the `<Popover />` and the `<Command />` components from [ShadCN UI](https://ui.shadcn.com/docs).
+The Async Select Component is built through the composition of `<Popover />` and the `<Command />` components from [shadcn/ui](https://ui.shadcn.com/docs).
 
 See installation instructions for the [Popover](https://ui.shadcn.com/docs/components/popover#installation) and the [Command](https://ui.shadcn.com/docs/components/command#installation) components.
 
