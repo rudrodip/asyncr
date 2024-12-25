@@ -14,7 +14,7 @@ import { Docs } from "@/components/docs";
 export default function Home() {
 
   return (
-    <main className="relative w-full flex flex-col min-h-screen">
+    <main className="relative w-full flex flex-col min-h-screen px-2 md:px-0">
       <div className="w-full max-w-5xl mx-auto flex flex-col gap-4 mt-16 md:mt-24">
         <div className="w-full flex justify-between">
           <h1 className="head-text-md">Async Select</h1>
@@ -30,8 +30,8 @@ export default function Home() {
             ShadCN UI
           </a>
         </p>
-        <div className="flex items-end justify-between gap-4 my-6">
-          <div className="flex flex-col gap-4 max-w-[375px]">
+        <div className="flex items-end justify-between gap-4 my-6 flex-wrap">
+          <div className="flex flex-col gap-4 max-w-[350px]">
             <ComponentWrapper
               Component={AsyncSelectExample}
               label="Async Select"
@@ -43,7 +43,7 @@ export default function Home() {
               )}
             />
           </div>
-          <div className="flex flex-col gap-4 max-w-[375px]">
+          <div className="flex flex-col gap-4 max-w-[350px]">
             <ComponentWrapper
               Component={AsyncSelectPreloadExample}
               label="Async Select with preloaded options"

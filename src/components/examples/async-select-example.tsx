@@ -47,7 +47,7 @@ export default function AsyncSelectExample() {
       placeholder="Search users..."
       value={selectedUser}
       onChange={setSelectedUser}
-      width="375px"
+      width="350px"
     />
   )
 }
