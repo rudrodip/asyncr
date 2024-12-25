@@ -23,11 +23,11 @@ export default function Home() {
         <p className="text-lg">
           Async Select component built with React &{" "}
           <a
-            href="https://ui.shadcn.com/docs/components/date-picker"
+            href="https://ui.shadcn.com/docs"
             target="_blank"
             className="font-semibold underline"
           >
-            ShadCN UI
+            shadcn/ui
           </a>
         </p>
         <div className="flex items-end justify-between gap-4 my-6 flex-wrap">
