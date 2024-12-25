@@ -2,13 +2,13 @@ import { SiteConfig } from "@/types";
 
 export const siteConfig: SiteConfig = {
   name: "Async Select",
-  title: "Async Select built with React & Shadcn UI",
+  title: "Async Select built with React & shadcn/ui",
   description: "Generic async select for your next project (pun intended)",
   origin: "https://async.rdsx.dev",
   keywords: [
     "Next.js 15",
     "React",
-    "Shadcn UI",
+    "shadcn/ui",
     "Async Select",
     "Generic Selector",
     "Async Select",
