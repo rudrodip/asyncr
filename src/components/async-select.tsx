@@ -101,6 +101,38 @@ export function AsyncSelect<T>({
     setSelectedValue(value);
   }, [value]);
 
+   // Initialize selectedOption when options are loaded and value exists
+   useEffect(() => {
+      if (value && options.length > 0) {
+         const option = options.find(opt => getOptionValue(opt) === value);
+         if (option) {
+            setSelectedOption(option);
+         }
+      }
+   }, [value, options, getOptionValue]);
+
+   // Effect for initial fetch
+   useEffect(() => {
+      const initializeOptions = async () => {
+         try {
+            setLoading(true);
+            setError(null);
+            // If we have a value, use it for the initial search
+            const data = await fetcher(value);
+            setOriginalOptions(data);
+            setOptions(data);
+         } catch (err) {
+            setError(err instanceof Error ? err.message : 'Failed to fetch options');
+         } finally {
+            setLoading(false);
+         }
+      };
+
+      if (!mounted) {
+         initializeOptions();
+      }
+   }, [mounted, fetcher, value]);
+  
   useEffect(() => {
     const fetchOptions = async () => {
       try {
