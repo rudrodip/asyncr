@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback } from "react";
-import { Check, ChevronsUpDown, Search, Loader2 } from "lucide-react";
+import { Check, ChevronsUpDown, Loader2 } from "lucide-react";
 import { useDebounce } from "@/hooks/use-debounce";
 
 import { cn } from "@/lib/utils";
@@ -8,6 +8,7 @@ import {
   Command,
   CommandEmpty,
   CommandGroup,
+  CommandInput,
   CommandItem,
   CommandList,
 } from "@/components/ui/command";
@@ -16,7 +17,6 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
-import { Input } from "@/components/ui/input";
 
 export interface Option {
   value: string;
@@ -101,38 +101,38 @@ export function AsyncSelect<T>({
     setSelectedValue(value);
   }, [value]);
 
-   // Initialize selectedOption when options are loaded and value exists
-   useEffect(() => {
-      if (value && options.length > 0) {
-         const option = options.find(opt => getOptionValue(opt) === value);
-         if (option) {
-            setSelectedOption(option);
-         }
+  // Initialize selectedOption when options are loaded and value exists
+  useEffect(() => {
+    if (value && options.length > 0) {
+      const option = options.find(opt => getOptionValue(opt) === value);
+      if (option) {
+        setSelectedOption(option);
       }
-   }, [value, options, getOptionValue]);
+    }
+  }, [value, options, getOptionValue]);
 
-   // Effect for initial fetch
-   useEffect(() => {
-      const initializeOptions = async () => {
-         try {
-            setLoading(true);
-            setError(null);
-            // If we have a value, use it for the initial search
-            const data = await fetcher(value);
-            setOriginalOptions(data);
-            setOptions(data);
-         } catch (err) {
-            setError(err instanceof Error ? err.message : 'Failed to fetch options');
-         } finally {
-            setLoading(false);
-         }
-      };
-
-      if (!mounted) {
-         initializeOptions();
+  // Effect for initial fetch
+  useEffect(() => {
+    const initializeOptions = async () => {
+      try {
+        setLoading(true);
+        setError(null);
+        // If we have a value, use it for the initial search
+        const data = await fetcher(value);
+        setOriginalOptions(data);
+        setOptions(data);
+      } catch (err) {
+        setError(err instanceof Error ? err.message : 'Failed to fetch options');
+      } finally {
+        setLoading(false);
       }
-   }, [mounted, fetcher, value]);
-  
+    };
+
+    if (!mounted) {
+      initializeOptions();
+    }
+  }, [mounted, fetcher, value]);
+
   useEffect(() => {
     const fetchOptions = async () => {
       try {
@@ -150,7 +150,7 @@ export function AsyncSelect<T>({
 
     if (!mounted) {
       fetchOptions();
-    } else if (!preload && debouncedSearchTerm) {
+    } else if (!preload) {
       fetchOptions();
     } else if (preload) {
       if (debouncedSearchTerm) {
@@ -193,14 +193,14 @@ export function AsyncSelect<T>({
         </Button>
       </PopoverTrigger>
       <PopoverContent style={{ width: width }} className={cn("p-0", className)}>
-        <Command>
+        <Command shouldFilter={false}>
           <div className="relative border-b w-full">
-            <Search className="absolute left-2 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-            <Input
+            <CommandInput
               placeholder={`Search ${label.toLowerCase()}...`}
               value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-              className="focus-visible:ring-0 rounded-b-none border-none pl-8 flex-1"
+              onValueChange={(value) => {
+                setSearchTerm(value);
+              }}
             />
             {loading && options.length > 0 && (
               <div className="absolute right-2 top-1/2 transform -translate-y-1/2 flex items-center">
