@@ -3,8 +3,7 @@ import rehypeSlug from "rehype-slug";
 import rehypeKatex from "rehype-katex";
 import remarkMath from "remark-math";
 import remarkGfm from "remark-gfm";
-import rehypePrettyCode from "rehype-pretty-code";
-import { LineElement } from "rehype-pretty-code";
+import rehypeShiki from "@shikijs/rehype";
 import rehypeAutolinkHeadings from "rehype-autolink-headings";
 
 const computedFields = <T extends { slug: string }>(data: T) => ({
@@ -42,20 +41,9 @@ export default defineConfig({
       rehypeSlug,
       rehypeKatex,
       [
-        rehypePrettyCode,
+        rehypeShiki,
         {
           theme: "github-dark-high-contrast",
-          onVisitLine(node: LineElement) {
-            if (node.children.length === 0) {
-              node.children = [{ type: "text", value: " " }];
-            }
-          },
-          onVisitHighlightedLine(node: LineElement) {
-            node.properties.className?.push("line--highlighted");
-          },
-          onVisitHighlightedWord(node: LineElement) {
-            node.properties.className = ["word--highlighted"];
-          },
         },
       ],
       [
