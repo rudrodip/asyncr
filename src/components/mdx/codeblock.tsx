@@ -12,10 +12,10 @@ export const CodeBlock = ({
         <CopyButton>{children}</CopyButton>
       </div>
       <pre
-        className={cn("overflow-x-auto bg-black py-4 rounded-b-lg max-h-[55vh] overflow-y-scroll", className)}
+        className={cn("overflow-x-auto bg-black py-4 rounded-b-lg max-h-[55vh] overflow-y-scroll px-2", className)}
         {...props}
       >
-        <code>{children}</code>
+        {children}
       </pre>
     </div>
   );
